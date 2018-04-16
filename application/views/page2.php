@@ -65,23 +65,21 @@
 
 	</head>
 	<body>
-
 	<div id="fh5co-page">
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
-			<h1 id="fh5co-logo"><a href="index.html"><img src="images/logo.png" alt="Free HTML5 Bootstrap Website Template"></a></h1>
+			<h1 id="fh5co-logo"><a href="index.html"><img src="<?php echo base_url('images/logo.jpg'); ?>"></a></h1>
 			<nav id="fh5co-main-menu" role="navigation">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="portfolio.html">Portfolio</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li class="fh5co-active"><a href="<?php echo base_url()."c_crud/"; ?>">Home</a></li>
+					<li><a href="<?php echo base_url()."c_crud/add_data/"; ?>">New Article</a></li>
+					
 				</ul>
 			</nav>
 
 			<div class="fh5co-footer">
-				<p><small>&copy; 2016 Nitro Free HTML5. All Rights Reserved.</span> <span>Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> </span> <span>Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></span></small></p>
+				<p><small>By: audimartya</span> </p>
 				<ul>
 					<li><a href="#"><i class="icon-facebook"></i></a></li>
 					<li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -91,7 +89,6 @@
 			</div>
 
 		</aside>
-
 		<div id="fh5co-main">
 
 			<div class="fh5co-narrow-content">
@@ -115,24 +112,27 @@
 						</div>
 						
 					</div>
-					<?php } ?>
+					
 				</div>
 
 				<div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
 					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
 
 						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-							<a href="#"><i class="icon-long-arrow-left"></i> <span>Previous Project</span></a>
+							<button class="btn btn-primary btn-md"><a href="<?php echo base_url()."c_crud/edit_data/".$data['id']; ?>">Edit</a></button>
 						</div>
 						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-							<a href="#"><i class="icon-th-large"></i></a>
+							<a href="<?php echo base_url()."c_crud" ?>"><i class="icon-th-large"></i></a>
 						</div>
 						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-							<a href="#"><span>Next Project</span> <i class="icon-long-arrow-right"></i></a>
+							<button class="btn btn-primary btn-md"><a href="<?php echo base_url()."c_crud/do_delete/".$data['id']; ?>">Delete</a></button>
+						</div>
+						<div>
+							
 						</div>
 					</div>
 				</div>
-
+				<?php } ?>
 			</div>
 		</div>
 	</div>

@@ -24,7 +24,7 @@ class C_crud extends CI_Controller {
 	}
 
 	public function add_data(){
-		$this->load->view('page3');
+		$this->load->view('form_add');
 	}
 
 	public function do_insert(){
@@ -49,14 +49,13 @@ class C_crud extends CI_Controller {
             $judul 			= $_POST['judul'];
 			$penulis 		= $_POST['penulis'];
 			$isi			= $_POST['isi'];
-			$img			= $this->upload->data('file_name');
+			$gambar			= $this->upload->data('file_name');
 			
 			$data_insert	= array(
 									'judul' 	=> $judul,
-									'tgl'		=> $tgl,
-									'author'	=> $author,
+									'penulis'	=> $penulis,
 									'isi' 		=> $isi,
-									'gambar'		=> $img
+									'gambar'		=> $gambar
 								);
 
 			$this->load->model('m_crud');
@@ -71,34 +70,67 @@ class C_crud extends CI_Controller {
         }
 	}
 	
-	public function upload(){
-	 	$this->load->view('upload_form', array('error' => ' ' ));
+	
+	
+public function edit_data($id='',$gambar=''){
+		$this->load->model('m_crud');
+		$artikel = $this->m_crud->getedit($id);
+		$data = array(
+			"id" 		=> $artikel[0]['id'],
+			"judul" 	=> $artikel[0]['judul'],
+			"penulis"	=> $artikel[0]['penulis'],
+			"isi" 		=> $artikel[0]['isi'],
+			"gambar"		=> $artikel[0]['gambar']
+		);
+		$this->load->view('form_update',$data);
 	}
 
-	public function do_upload()
+	public function do_update(){
+		$config['upload_path']          = 'images/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 1000;
+        $config['max_width']            = 1024;
+        $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('userfile'))
         {
-                $config['upload_path']          = 'images/uploaded/';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 100;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+                $error = array('error' => $this->upload->display_errors());
 
-                $this->load->library('upload', $config);
-
-                if ( ! $this->upload->do_upload('userfile'))
-                {
-                        $error = array('error' => $this->upload->display_errors());
-
-                        $this->load->view('upload_form', $error);
-                }
-                else
-                {
-                        $data = array('upload_data' => $this->upload->data());
-
-                        $this->load->view('sukses', $data);
-                }
+               print_r($error);
         }
-	
+        else
+        {
+			$result_upload=$this->upload->data();
+				
+			$id 			= $_POST['id'];
+			$judul 			= $_POST['judul'];
+			$penulis		= $_POST['penulis'];
+			$isi			= $_POST['isi'];
+			$gambar 		= $result_upload['file_name']; 
+			$data_update 	= array(
+				'judul' 		=> $judul,
+				'penulis' 		=> $penulis,
+				'isi' 			=> $isi,
+				'gambar'		=> $gambar);
+			$this->load->model('m_crud');
+			$where = array('id' => $id);
+			$res = $this->m_crud->UpdateData('artikel',$data_update,$where);
+			if($res>=1){
+				$this->session->set_flashdata('pesan','Update Data Sukses');
+				redirect('c_crud/index');
+			}
+		}
+	}
 
-
+	public function do_delete($id){
+		$this->load->model('m_crud');
+		$where 	= array('id' => $id);
+		$res 	= $this->m_crud->DeleteData('artikel',$where);
+		if($res>=1){
+			$this->session->set_flashdata('pesan','Delete Data Sukses');
+			redirect('c_crud/index');
+			}
+	}
 }
