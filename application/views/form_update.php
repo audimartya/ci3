@@ -89,21 +89,26 @@
                     <div class="col-md-4">
                         <h1>Update</h1>
                     </div>
+
                 </div>
-                <?php echo form_open_multipart('c_crud/do_update', 'id="id"')?>
+                 <?php echo validation_errors(); ?>
+
+                <?php echo form_open_multipart('c_crud/do_update', 'id="id"',array('class' => 'needs-validation', 'novalidate' => ''))?>
+                
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Penulis" name="penulis"  value="<?php echo $penulis; ?>">
+                                        <input type="text" class="form-control" placeholder="Penulis" name="penulis"  value="<?php echo set_value('penulis', $penulis); ?>"required>
+                        <div class="invalid-feedback">Isi judul dulu gan</div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Judul" name="judul" value="<?php echo $judul; ?>">
+                                        <input type="text" class="form-control" placeholder="Judul" name="judul" value="<?php echo set_value('judul', $judul); ?>">
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="isi" id="message" class="form-control" placeholder="Isi" name="isi"><?php echo $isi; ?></textarea>
+                                        <textarea name="isi" id="message" class="form-control" placeholder="Isi" name="isi"><?php echo set_value('isi', $isi); ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <input type="file" class="form-control" placeholder="Upload" name="userfile" >

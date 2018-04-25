@@ -90,22 +90,25 @@
                         <h1>New Article</h1>
                     </div>
                 </div>
+                <?php echo validation_errors(); ?>
+
+
                 <?php echo form_open_multipart('c_crud/do_insert')?>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Penulis" name="penulis">
+                                        <input type="text" class="form-control" placeholder="Penulis" name="penulis" value="<?php echo set_value('penulis') ?>" >
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Judul" name="judul">
+                                        <input type="text" class="form-control" placeholder="Judul" name="judul" value="<?php echo set_value('judul') ?>" >
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="isi" id="message" class="form-control" placeholder="Isi" name="isi"></textarea>
+                                        <textarea name="isi" id="message" class="form-control" placeholder="Isi" name="isi" value="<?php echo set_value('isi') ?>" ></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <input type="file" class="form-control" placeholder="Upload" name="userfile">
+                                        <input type="file" class="form-control" placeholder="Upload" name="userfile" value="<?php echo set_value('userfile') ?>" >
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="btnSubmit" class="btn btn-primary btn-md" value="Simpan"/>
