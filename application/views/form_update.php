@@ -64,7 +64,7 @@
                 <ul>
                     <li class="fh5co-active"><a href="<?php echo base_url()."c_crud/"; ?>">Home</a></li>
                     <li><a href="<?php echo base_url()."c_crud/add_data/"; ?>">New Article</a></li>
-                    
+                   <li><a href="<?php echo base_url()."c_crud/add_categories/"; ?>">New Categories</a></li>
                 </ul>
             </nav>
 

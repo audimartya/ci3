@@ -1,22 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_crud extends CI_Model {
+class M_cat extends CI_Model {
 	
-	public function GetArtikel($limit = FALSE, $offset = FALSE){
-		if ( $limit ) {
-            $this->db->limit($limit, $offset);
-        }
-        
-		$this->db->select('*');
-		$this->db->from('artikel as a');
-		$this->db->join('categories as c','a.id_cat = k.id_cat');
+	public function GetArtikel(){
+		
+		$this->db->select('id_cat,judul_cat,isi_cat');
+		$this->db->from('categories');
 		$data=$this->db->get();
 	
 		return $data->result_array();
 	}
 	public function GetPreview($id=''){
-		$isi = $this->db->query('SELECT id,judul,penulis,isi,gambar FROM artikel where id = '.$id);
+		$isi = $this->db->query('SELECT id_cat,judul_cat,isi_cat FROM categories where id_cat = '.$id);
 		return $isi->result_array();
 	}
 
@@ -31,7 +27,7 @@ class M_crud extends CI_Model {
 		}
 
 	public function getedit($id=''){
-		$data = $this->db->query('SELECT id,judul,penulis,isi,gambar FROM artikel where id = '.$id);
+		$data = $this->db->query('SELECT id_cat,judul_cat,isi_cat FROM categories where id_cat = '.$id);
 		return $data->result_array();
 	}
 

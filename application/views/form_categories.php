@@ -1,6 +1,6 @@
 <html>
 	<head>
-    	<title>Tambah Artikel</title>
+    	<title>Tambah Kategori</title>
     </head>
     <body>
        
@@ -64,7 +64,8 @@
                 <ul>
                     <li class="fh5co-active"><a href="<?php echo base_url()."c_crud/"; ?>">Home</a></li>
                     <li><a href="<?php echo base_url()."c_crud/add_data/"; ?>">New Article</a></li>
-                    <li><a href="<?php echo base_url()."c_crud/add_categories/"; ?>">New Categories</a></li>
+                   <li><a href="<?php echo base_url()."c_crud/add_categories/"; ?>">New Categories</a></li>
+                    
                 </ul>
             </nav>
 
@@ -87,31 +88,25 @@
                 
                 <div class="row">
                     <div class="col-md-4">
-                        <h1>New Article</h1>
+                        <h1>New Categories</h1>
                     </div>
                 </div>
                 <?php echo validation_errors(); ?>
 
 
-                <?php echo form_open_multipart('c_crud/do_insert')?>
+                <?php echo form_open_multipart('c_cat/create_categories')?>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Penulis" name="penulis" value="<?php echo set_value('penulis') ?>" >
+                                <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Id" name="id" value="<?php echo set_value('id_cat') ?>" >
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Judul" name="judul" value="<?php echo set_value('judul') ?>" >
+                                        <input type="text" class="form-control" placeholder="Judul" name="judul" value="<?php echo set_value('judul_cat') ?>" >
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="isi" id="message" class="form-control" placeholder="Isi" name="isi" value="<?php echo set_value('isi') ?>" ></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="categories" id="message" class="form-control" placeholder="categories" name="isi" value="<?php echo set_value('categories') ?>" ></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="file" class="form-control" placeholder="Upload" name="userfile" value="<?php echo set_value('userfile') ?>" >
+                                        <input type="text" class="form-control" placeholder="Isi" name="Isi" value="<?php echo set_value('isi_cat') ?>" >
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="btnSubmit" class="btn btn-primary btn-md" value="Simpan"/>

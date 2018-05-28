@@ -7,14 +7,16 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Nitro &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
+	<title> audimartya
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+	<meta name="description" content="Keep Healthy!" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
 
   <!-- 
 	//////////////////////////////////////////////////////
+
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FreeHTML5.co
 		
@@ -22,6 +24,7 @@
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
+
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -62,80 +65,41 @@
 	<![endif]-->
 
 	</head>
-	<body>
-	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
-
-			<h1 id="fh5co-logo"><a href="index.html"><img src="<?php echo base_url('images/logo.jpg'); ?>"></a></h1>
-			<nav id="fh5co-main-menu" role="navigation">
-				<ul>
-					<li class="fh5co-active"><a href="<?php echo base_url()."c_crud/"; ?>">Home</a></li>
-					<li><a href="<?php echo base_url()."c_crud/add_data/"; ?>">New Article</a></li>
-					<li><a href="<?php echo base_url()."c_crud/add_categories/"; ?>">New Categories</a></li>
-				</ul>
-			</nav>
-
-			<div class="fh5co-footer">
-				<p><small>By: audimartya</span> </p>
-				<ul>
-					<li><a href="#"><i class="icon-facebook"></i></a></li>
-					<li><a href="#"><i class="icon-twitter"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-					<li><a href="#"><i class="icon-linkedin"></i></a></li>
-				</ul>
-			</div>
-
-		</aside>
-		<div id="fh5co-main">
-
-			<div class="fh5co-narrow-content">
-				<div class="row">
-					<?php foreach ($isi as $data) { ?>
-					<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-						<figure class="text-center">
-							<img src="<?php echo base_url('images/'.$data['gambar']); ?>" alt="Free HTML5 Bootstrap" class="img-responsive">
-						</figure>
-					</div>
-					
-					<div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
-						
-						<div class="col-md-9 col-md-push-3">
-							<h1><?php echo $data['judul']; ?></h1>
-							<p><?php echo $data['isi']; ?></p>
-						</div>
-
-						<div class="col-md-3 col-md-pull-9 fh5co-services">
-							<h3><?php echo $data['penulis']; ?></h3>
-						</div>
-						
-					</div>
-					
-				</div>
-
-				<div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
-					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
-
-						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-							<button class="btn btn-primary btn-md"><a href="<?php echo base_url()."c_crud/edit_data/".$data['id']; ?>">Edit</a></button>
-						</div>
-						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-							<a href="<?php echo base_url()."c_crud" ?>"><i class="icon-th-large"></i></a>
-						</div>
-						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-							<button class="btn btn-primary btn-md"><a href="<?php echo base_url()."c_crud/do_delete/".$data['id']; ?>">Delete</a></button>
-						</div>
-						<div>
-							
-						</div>
-					</div>
-				</div>
-				<?php } ?>
-			</div>
-		</div>
-	</div>
-
-	<!-- jQuery -->
+<body>
+        <div class="container">
+        <h3>Data Table </h3>
+        <?php echo "<h2>".$this->session->flashdata('pesan')."</h2>" ?>
+        <table id="example" class="table table-hover">
+            <thead>
+				<tr>
+					<th>Id </th>
+	                <th>Judul</th>
+	                <th>Penulis</th>
+	                <th>Categories</th>
+	                <th>Isi</th>
+	                  <th>Gambar</th>
+				</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($result as $data) { ?>
+		            <tr>
+		                <td><?php echo $data['id']; ?></td>
+		                <td><?php echo $data['judul']; ?></td>
+		                <td><?php echo $data['penulis']; ?></td>
+		                <td><?php echo $data['categories']; ?></td>
+		                 <td><?php echo $data['gambar']; ?></td>
+		                <td>	
+		                	<a href="<?php echo base_url()."/lihat/".$data['id']; ?>">
+		                	<button class="btn btn-primary">
+		                	Lihat</button>
+		                	</a>
+		                </td>
+		            </tr>
+		            <?php } ?>
+				</tbody>
+        </table>
+    </div>
+    <!-- jQuery -->
 	<script src="<?php echo base_url('./assets/js/jquery.min.js'); ?>"></script>
 	<!-- jQuery Easing -->
 	<script src="<?php echo base_url('./assets/js/jquery.easing.1.3.js'); ?>"></script>
@@ -149,9 +113,10 @@
 	<script src="<?php echo base_url('./assets/js/jquery.waypoints.min.js'); ?>"></script>
 	<!-- Counters -->
 	<script src="<?php echo base_url('./assets/js/jquery.countTo.js'); ?>"></script>
-	
+	 -->
 	
 	<!-- MAIN JS -->
 	<script src="<?php echo base_url('./assets/js/main.js'); ?>"></script>
+
 	</body>
 </html>

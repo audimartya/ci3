@@ -1,5 +1,7 @@
-
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 	<meta charset="utf-8">
@@ -9,6 +11,18 @@
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
+
+  <!-- 
+	//////////////////////////////////////////////////////
+	FREE HTML5 TEMPLATE 
+	DESIGNED & DEVELOPED by FreeHTML5.co
+		
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+	//////////////////////////////////////////////////////
+	 -->
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -45,25 +59,24 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo base_url('./assets/js/respond.min.js'); ?>"></script>
 	<![endif]-->
+
 	</head>
 	<body>
-
 	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-		<aside id="fh5co-aside" role="complementary" class="js-fullheight">
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
-			<h1 id="fh5co-logo"><a href="index.html"><img src="assets/images/logo.png" alt="Free HTML5 Bootstrap Website Template"></a></h1>
+			<h1 id="fh5co-logo"><a href="index.html"><img src="<?php echo base_url('images/logo.jpg'); ?>"></a></h1>
 			<nav id="fh5co-main-menu" role="navigation">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="portfolio.html">Portfolio</a></li>
-					<li><a href="about.html">About</a></li>
-					<li class="fh5co-active"><a href="contact.html">Contact</a></li>
+					<li class="fh5co-active"><a href="<?php echo base_url()."c_crud/"; ?>">Home</a></li>
+					<li><a href="<?php echo base_url()."c_crud/add_data/"; ?>">New Article</a></li>
+					<li><a href="<?php echo base_url()."c_crud/add_categories/"; ?>">New Categories</a></li>
 				</ul>
 			</nav>
 
 			<div class="fh5co-footer">
-				<p><small>&copy; 2016 Nitro Free HTML5. All Rights Reserved.</span> <span>Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> </span> <span>Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></span></small></p>
+				<p><small>By: audimartya</span> </p>
 				<ul>
 					<li><a href="#"><i class="icon-facebook"></i></a></li>
 					<li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -73,46 +86,46 @@
 			</div>
 
 		</aside>
-
 		<div id="fh5co-main">
 
-			
-			<div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
-				
+			<div class="fh5co-narrow-content">
 				<div class="row">
-					<div class="col-md-4">
-						<h1>Get In Touch</h1>
-					</div>
-				</div>
-				<form action="">
-				<?php echo form_open_multipart('c_crud/do_insert')?>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Penulis" name="penulis">
-									</div>
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Judul" name="judul">
-									</div>
-									<div class="form-group">
-										<textarea name="isi" id="message" cols="30" rows="7" class="form-control" placeholder="Isi"></textarea>
-									</div>
-									<div class="form-group">
-										<input type="file" class="form-control" placeholder="Upload" name="userfile">
-									</div>
-									<div class="form-group">
-										<input type="submit" name="btnSubmit" class="btn btn-primary btn-md" value="Send Message">
-									</div>
-								</div>
-							</div>
+					<?php foreach ($result as $data) { ?>
+					
+					
+					<div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
+						
+						<div class="col-md-9 col-md-push-3">
+						<a href="<?php echo base_url()."c_cat/do_preview/".$data['id_cat']; ?>">
+							<h1><?php echo $data['judul_cat']; ?></h1>
+							<p><?php echo $data['isi_cat']; ?></p>
 						</div>
+
+						
 						
 					</div>
-				</form>
-			</div>
+					
+				</div>
 
+				<div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
+					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
+
+						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
+							<button class="btn btn-primary btn-md"><a href="<?php echo base_url()."c_cat/edit_data/".$data['id_cat']; ?>">Edit</a></button>
+						</div>
+						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
+							<a href="<?php echo base_url()."c_cat" ?>"><i class="icon-th-large"></i></a>
+						</div>
+						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
+							<button class="btn btn-primary btn-md"><a href="<?php echo base_url()."c_cat/do_delete/".$data['id_cat']; ?>">Delete</a></button>
+						</div>
+						<div>
+							
+						</div>
+					</div>
+				</div>
+				<?php } ?>
+			</div>
 		</div>
 	</div>
 
@@ -134,7 +147,6 @@
 	
 	<!-- MAIN JS -->
 	<script src="<?php echo base_url('./assets/js/main.js'); ?>"></script>
-
 	</body>
 </html>
 
