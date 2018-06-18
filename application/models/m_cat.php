@@ -3,13 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_cat extends CI_Model {
 	
-	public function GetArtikel(){
-		
-		$this->db->select('id_cat,judul_cat,isi_cat');
-		$this->db->from('categories');
-		$data=$this->db->get();
+	public function GetArtikel($limit = FALSE, $offset = FALSE){
+		if ( $limit ) {
+            $this->db->limit($limit, $offset);
+        }
+        
+		$this->db->order_by('categories.post_date', 'DESC');
+		$this->db->join('artikel', 'categories.id_cat = artikel.fk_id_cat');
+		$data=$this->db->get('artikel');
 	
 		return $data->result_array();
+	}
+
+	public function get_total(){
+		return $this->db->count_all("categories")
 	}
 	public function GetPreview($id=''){
 		$isi = $this->db->query('SELECT id_cat,judul_cat,isi_cat FROM categories where id_cat = '.$id);

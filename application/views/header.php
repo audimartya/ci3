@@ -41,6 +41,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	
+	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="<?php echo base_url('./assets/css/animate.css'); ?>">
 	<!-- Icomoon Icon Fonts-->
@@ -60,80 +61,17 @@
 	<script src="<?php echo base_url('./assets/js/respond.min.js'); ?>"></script>
 	<![endif]-->
 
+	<div class="fh5co-box">
++				<h3 class="heading">Search</h3>
++				<form action="#">
++					<div class="form-group">
++						<input type="text" class="form-control" placeholder="Type a keyword">
++					</div>
++				</form>
++			</div
+
+
+	
+	</script>
 	</head>
-	<body>
-	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
-
-			<h1 id="fh5co-logo"><a href="index.html"><img src="<?php echo base_url('images/logo.jpg'); ?>"></a></h1>
-			<nav id="fh5co-main-menu" role="navigation">
-				<ul>
-					<li class="fh5co-active"><a href="<?php echo base_url()."c_crud/"; ?>">Home</a></li>
-					<li><a href="<?php echo base_url()."c_crud/add_data/"; ?>">New Article</a></li>
-					<li><a href="<?php echo base_url()."c_crud/add_categories/"; ?>">New Categories</a></li>
-				</ul>
-			</nav>
-
-			<div class="fh5co-footer">
-				<p><small>By: audimartya</span> </p>
-				<ul>
-					<li><a href="#"><i class="icon-facebook"></i></a></li>
-					<li><a href="#"><i class="icon-twitter"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-					<li><a href="#"><i class="icon-linkedin"></i></a></li>
-				</ul>
-			</div>
-
-		</aside>
-		<div id="fh5co-main">
-
-			<div class="fh5co-narrow-content">
-				<div class="row">
-					<?php foreach ($result as $data)   if (isset($links)) {
-            echo $links;
-        }
-        ?>
-					
-					
-					<div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
-						
-						<div class="col-md-9 col-md-push-3">
-						<a href="<?php echo base_url()."c_cat/do_preview/".$data['id_cat']; ?>">
-							<h1><?php echo $data['judul_cat']; ?></h1>
-							<p><?php echo $data['isi_cat']; ?></p>
-						</div>
-
-						
-						
-					</div>
-					
-				</div>
-
-				<div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
-					<div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
-
-						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-							<button class="btn btn-primary btn-md"><a href="<?php echo base_url()."c_cat/edit_data/".$data['id_cat']; ?>">Edit</a></button>
-						</div>
-						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-							<a href="<?php echo base_url()."c_cat" ?>"><i class="icon-th-large"></i></a>
-						</div>
-						<div class="col-md-4 col-sm-4 col-xs-4 text-center">
-							<button class="btn btn-primary btn-md"><a href="<?php echo base_url()."c_cat/do_delete/".$data['id_cat']; ?>">Delete</a></button>
-						</div>
-						<div>
-							
-						</div>
-					</div>
-				</div>
-				<?php } ?>
-			</div>
-		</div>
-	</div>
-
-
-	</body>
-	<?php $this->load->view("footer"); ?>
-</html>
-
+	</html>

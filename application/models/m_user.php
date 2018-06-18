@@ -7,7 +7,7 @@ class M_user extends CI_Model{
            'email' => $this->input->post('email'),
            'username' => $this->input->post('username'),
            'password' => $enc_password
-         
+           'fk_level_id_user' => $this->input->post('member')
        );
        // Insert user
        return $this->db->insert('users', $data);
@@ -23,5 +23,17 @@ class M_user extends CI_Model{
            return false;
        }
    }
+      public function get_user_level($id_user) {
+      $this->db->select('fk_level_id_cat');
+       $this->db->where('id_user', $id_user);
+       $result = $this->db->get('user');
+
+       if ($result->num_rows() == 1) {
+           return $result->row(0)->fk_level_id_user;
+       } else {
+           return false;
+       }
+   }
+
 }
 ?>

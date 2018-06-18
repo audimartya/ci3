@@ -4,11 +4,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class C_cat extends CI_Controller {
 
 	public function index(){
-		$this->load->model('m_cat');
-
-		$data['result'] = $this->m_cat->GetArtikel();
-
-		$this->load->view('page3', $data);
+		$data['result'] = $this->m_cat>GetArtikel();
+		$limit_per_page = 4;
+		// URI segment untuk mendeteksi "halaman ke berapa" dari URL
+		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+		// Dapatkan jumlah data 
+		$total_records = $this->m_cat->get_total();
+		
+		if ($total_records > 0) {
+			// Dapatkan data pada halaman yg dituju
+			$data['result'] = $this->m_cat->GetArtikel($limit_per_page, $start_index);
+			
+			// Konfigurasi pagination
+			$config['base_url'] = base_url() . 'c_cat/index';
+			$config['total_rows'] = $total_records;
+			$config['per_page'] = $limit_per_page;
+			$config["uri_segment"] = 3;
+			
+			$this->pagination->initialize($config);
+				
+			// Buat link pagination
+			$data["links"] = $this->pagination->create_links();
+		 $this->load->model('m_cat');
+        $artikel['result'] = $this->m_cat->get_all_artikel();
+		}
 	} 
 
 	public function do_preview($id_cat=''){

@@ -24,7 +24,7 @@ Class User extends CI_Controller{
         $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'matches[password]');
          if($this->form_validation->run() === FALSE){
             
-            $this->load->view('user/register', $data);
+            $this->load->view('user/register');
            
         } else {
             // Encrypt password
@@ -50,10 +50,11 @@ Class User extends CI_Controller{
 		        $user_data = array(
 		            'user_id' => $user_id,
 		            'username' => $username,
-		            'logged_in' =>true);
+		            'logged_in' =>true;
+                    'level' =>$this->m_user->get_user_level($id_user));
 			    $this->session->set_userdata($user_data);
 		        $this->session->set_flashdata('user_loggedin', 'You are now logged in');
-		        redirect('c_crud');
+		        redirect('user/dashboard');
 	    	} else {
 		        $this->session->set_flashdata('login_failed', 'Login is invalid');
 		        redirect('user/login');
@@ -69,5 +70,14 @@ Class User extends CI_Controller{
         $this->session->set_flashdata('user_loggedout', 'Anda sudah log out');
         redirect('user/loginuser');
     }
+    public function dashboard(){
+
+        if(!$this->session->userdata('logged_in')){
+            redirect('user/login');
+        }
+
+        $username = $this->session->userdata('username');
+        $data['user'] = $this->user_model->get_user_details( $username );
+}
 }
 ?>

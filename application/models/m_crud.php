@@ -8,12 +8,15 @@ class M_crud extends CI_Model {
             $this->db->limit($limit, $offset);
         }
         
-		$this->db->select('*');
-		$this->db->from('artikel as a');
-		$this->db->join('categories as c','a.id_cat = k.id_cat');
-		$data=$this->db->get();
+		$this->db->order_by('artikel.post_date', 'DESC');
+		$this->db->join('artikel', 'categories.id_cat = artikel.fk_id_cat');
+		$data=$this->db->get('artikel');
 	
 		return $data->result_array();
+	}
+
+	public function get_total(){
+		return $this->db->count_all("artikel")
 	}
 	public function GetPreview($id=''){
 		$isi = $this->db->query('SELECT id,judul,penulis,isi,gambar FROM artikel where id = '.$id);

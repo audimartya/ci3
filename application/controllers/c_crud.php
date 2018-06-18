@@ -15,7 +15,7 @@ class C_crud extends CI_Controller {
 		// URI segment untuk mendeteksi "halaman ke berapa" dari URL
 		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
 		// Dapatkan jumlah data 
-		$total_records = $this->m_ccruf->get_total();
+		$total_records = $this->m_crud->get_total();
 		
 		if ($total_records > 0) {
 			// Dapatkan data pada halaman yg dituju
@@ -31,6 +31,8 @@ class C_crud extends CI_Controller {
 				
 			// Buat link pagination
 			$data["links"] = $this->pagination->create_links();
+		 $this->load->model('m_crud');
+        $artikel['result'] = $this->m_crud->get_all_artikel();
 		}
 	}
 
@@ -100,7 +102,7 @@ class C_crud extends CI_Controller {
 
 	            $judul 			= $_POST['judul'];
 				$penulis 		= $_POST['penulis'];
-				$categories=$_POST['categories'];
+				$categories     =$_POST['categories'];
 				$isi			= $_POST['isi'];
 				$gambar			= $this->upload->data('file_name');
 				$data_insert	= array(
