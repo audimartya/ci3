@@ -73,19 +73,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-    <label for="">Pilih Paket Membership</label>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="membership" 
-id="goldmember" value="2" checked>
-        <label class="form-check-label" for="goldmember">Gold</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="membership" 
-id="silvermember" value="3">
-        <label class="form-check-label" for="silvermember">Silver</label>
-    </div>
-</div>
+                
                 <button class="btn btn-primary" type="submit">Register</button>
                 <button class="btn btn-warning"><a href="<?php echo base_url()."c_crud/"; ?>">Back</a></button>
               </form>

@@ -77,7 +77,7 @@ Class User extends CI_Controller{
         }
 
         $username = $this->session->userdata('username');
-        $data['user'] = $this->m_user->get_user_details( $username );
+        $data['user'] = $this->user_model->get_user_details( $username );
 }
 }
 ?>
