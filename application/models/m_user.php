@@ -7,7 +7,7 @@ class M_user extends CI_Model{
            'email' => $this->input->post('email'),
            'username' => $this->input->post('username'),
            'password' => $enc_password
-           'fk_level_id_user' => $this->input->post('member')
+           'fk_level_id_user' => $this->input->post('membership')
        );
        // Insert user
        return $this->db->insert('users', $data);
@@ -30,6 +30,20 @@ class M_user extends CI_Model{
 
        if ($result->num_rows() == 1) {
            return $result->row(0)->fk_level_id_user;
+       } else {
+           return false;
+       }
+   }
+
+   
+   public function get_user_details( $username )
+   {
+       $this->db->where('username', $username);
+
+       $result = $this->db->get('users');
+
+       if ($result->num_rows() == 1) {
+           return $result->row();
        } else {
            return false;
        }
